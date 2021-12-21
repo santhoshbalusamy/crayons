@@ -13,19 +13,20 @@
   <body>
     <fw-button expand color="primary">Primary Button</fw-button>
 
-    <fw-form-wrapper></fw-form-wrapper>
+    <!-- Pattern 1 -->
+    <fw-form-wrapper id="X"></fw-form-wrapper>
+    <fw-button color="secondary" id="reset">Reset</fw-button>
+    <fw-button id="submit">Submit</fw-button>
 
-    <!-- <fw-form-group>
-      <fw-form-label>Label 1 </fw-form-label>
-      <fw-form-control>
-        <fw-input></fw-input>
-      </fw-form-control>
-     <fw-form-text>Text hint</fw-form-text> 
-      <br />
-      <fw-form-control-feedback>negative </fw-form-control-feedback>
-    </fw-form-group> -->
-
-    <!-- <fw-form-text>Text hint</fw-form-text> -->
+    <!-- <script>
+      const form = document.querySelector('#X');
+      document.querySelector('#submit').addEventListener('click', (e) => {
+        form.doSubmit(e);
+      });
+      document.querySelector('#reset').addEventListener('click', (e) => {
+        form.doReset(e);
+      });
+    </script> -->
 
     <!-- <br />
   <fw-button-group>
