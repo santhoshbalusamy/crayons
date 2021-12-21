@@ -264,7 +264,7 @@ export class Select {
   // Listen to Tag close in case of multi-select
   @Listen('fwClosed')
   fwCloseHandler(ev) {
-    this.value = this.value.filter((value) => value !== ev.detail.value);
+    this.value = this.value?.filter((value) => value !== ev.detail.value);
   }
 
   @Listen('keydown')
@@ -350,7 +350,7 @@ export class Select {
         break;
       case 'ArrowRight':
         this.tagArrowKeyCounter++;
-        if (this.tagArrowKeyCounter >= this.value.length) {
+        if (this.tagArrowKeyCounter >= this.value?.length) {
           this.selectInput.focus();
         } else {
           this.focusOnTag(this.tagArrowKeyCounter);
@@ -362,7 +362,7 @@ export class Select {
 
   focusOnTagContainer() {
     this.tagRefs = [...this.tagContainer.getElementsByTagName('fw-tag')];
-    this.tagArrowKeyCounter = this.value.length - 1;
+    this.tagArrowKeyCounter = this.value?.length - 1;
     this.focusOnTag(this.tagArrowKeyCounter);
   }
 
@@ -379,7 +379,7 @@ export class Select {
   }
 
   valueExists() {
-    return this.multiple ? this.value.length > 0 : !!this.value;
+    return this.multiple ? this.value?.length > 0 : !!this.value;
   }
 
   onInput() {
@@ -394,7 +394,7 @@ export class Select {
   renderTags() {
     if (this.multiple) {
       return this.selectedOptionsState.map((option) => {
-        if (this.value.includes(option.value)) {
+        if (this.value?.includes(option.value)) {
           return (
             <fw-tag
               variant={this.tagVariant}
@@ -417,6 +417,10 @@ export class Select {
         this.selectInput.value = this.multiple
           ? this.selectInput.value
           : this.selectedOptionsState[0].text || '';
+      }
+    } else {
+      if (this.selectInput) {
+        this.selectInput.value = '';
       }
     }
   }
@@ -456,7 +460,7 @@ export class Select {
         value: option.value,
         selected:
           (this.multiple
-            ? this.value.includes(option.value)
+            ? this.value?.includes(option.value)
             : this.value === option.value) || option.selected,
         disabled: option.disabled || this.disabled, // Check if option is disabled or select is disabled
         htmlContent: option.html ? option.innerHTML : '',
@@ -470,10 +474,10 @@ export class Select {
       );
     } else if (
       this.multiple &&
-      this.value.length !== this.selectedOptions.length
+      this.value?.length !== this.selectedOptions.length
     ) {
       this.selectedOptionsState = this.dataSource.filter((option) =>
-        this.value.includes(option.value)
+        this.value?.includes(option.value)
       );
     }
     if (this.dataSource?.length > 0) {

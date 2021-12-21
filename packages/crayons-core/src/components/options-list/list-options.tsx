@@ -195,7 +195,7 @@ export class ListOptions {
     if (this.options) {
       this.selectedOptionsState = this.options.filter((option) => {
         return this.multiple
-          ? values.includes(option.value)
+          ? values?.includes(option.value)
           : values === option.value;
       });
       this.isInternalValueChange = true;
@@ -234,7 +234,7 @@ export class ListOptions {
   onValueChange(newValue, oldValue) {
     if (JSON.stringify(newValue) !== JSON.stringify(oldValue)) {
       this.selectOptions = this.selectOptions.map((option) => {
-        option.selected = newValue.includes(option.value);
+        option.selected = newValue?.includes(option.value);
         return option;
       });
       // Warning: Before mutating this.value inside this file set the  isInternalValueChange to true.
@@ -242,12 +242,12 @@ export class ListOptions {
       if (!this.isInternalValueChange) {
         if (this.options.length > 0) {
           this.selectedOptionsState = this.options.filter((option) =>
-            newValue.includes(option.value)
+            newValue?.includes(option.value)
           );
         } else {
           // This usually occurs during dynamic select
           this.selectedOptionsState = this.selectedOptionsState.filter(
-            (option) => newValue.includes(option.value)
+            (option) => newValue?.includes(option.value)
           );
         }
       }
@@ -265,7 +265,7 @@ export class ListOptions {
   }
 
   valueExists() {
-    return this.multiple ? this.value.length > 0 : !!this.value;
+    return this.multiple ? this.value?.length > 0 : !!this.value;
   }
 
   handleSearchWithDebounce = debounce(
@@ -288,7 +288,7 @@ export class ListOptions {
 
   getLastSelectedValue() {
     if (this.valueExists()) {
-      return this.multiple ? this.value.slice(-1)[0] : this.value;
+      return this.multiple ? this.value?.slice(-1)[0] : this.value;
     }
   }
 
@@ -296,7 +296,7 @@ export class ListOptions {
     if (this.options) {
       this.selectedOptionsState = this.options.filter((option) => {
         return this.multiple
-          ? values.includes(option.value)
+          ? values?.includes(option.value)
           : values === option.value;
       });
     } else {
@@ -313,7 +313,7 @@ export class ListOptions {
           variant: option.variant || this.variant,
           selected:
             (this.multiple
-              ? this.value.includes(option.value)
+              ? this.value?.includes(option.value)
               : this.value === option.value) || option.selected,
           disabled:
             option.disabled ||

@@ -1,4 +1,4 @@
-import { Component, h, Fragment, Prop, State } from '@stencil/core';
+import { Component, h, Fragment, Prop, State, Method } from '@stencil/core';
 import * as Yup from 'yup';
 
 /** incoming props formSchema, initialvalues, validationSchema, initialErrors */
@@ -397,6 +397,8 @@ export class FormWrapper {
   @State()
   formInitialErrors;
 
+  formRef: any;
+
   componentWillLoad(): void {
     const yupSchema = this.formSchema.fields.reduce(createYupSchema, {});
 
@@ -418,12 +420,23 @@ export class FormWrapper {
     this.formInitialValues = { ...dynamicInitialValues, ...this.initialValues };
   }
 
+  @Method()
+  async doSubmit() {
+    this.formRef.doSubmit();
+  }
+
+  @Method()
+  async doReset() {
+    this.formRef.doReset();
+  }
+
   render() {
     return (
       <fw-form
         initialValues={this.formInitialValues}
         validationSchema={this.formValidationSchema}
         initialErrors={this.formInitialErrors}
+        ref={(el) => (this.formRef = el)}
         renderer={(props) => {
           const {
             errors,
@@ -566,7 +579,7 @@ export class FormWrapper {
                         <Fragment>
                           <div>
                             <fw-select
-                              {...selectProps(field.name)}
+                              {...selectProps(field.name, field.inputType)}
                               label={field.label}
                               placeholder={field.placeholder}
                               name={field.name}
@@ -621,7 +634,7 @@ export class FormWrapper {
                 })}
                 <br />
                 <br />
-                <button type='submit'>Submit</button>
+                {/* <button type='submit'>Submit</button> */}
               </form>
             </div>
           );

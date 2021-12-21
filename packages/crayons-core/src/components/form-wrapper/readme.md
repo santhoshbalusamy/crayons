@@ -15,6 +15,29 @@
 | `validationSchema` | `validation-schema` |             | `any`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | `staticValidationSchema as any` |
 
 
+## Methods
+
+### `doReset() => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+### `doSubmit() => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+
 ## Dependencies
 
 ### Depends on
@@ -27,7 +50,6 @@
 - [fw-radio-group](../radio-group)
 - [fw-radio](../radio)
 - [fw-select](../select)
-- [fw-select-option](../select-option)
 - [fw-timepicker](../timepicker)
 
 ### Graph
@@ -41,7 +63,6 @@ graph TD;
   fw-form-wrapper --> fw-radio-group
   fw-form-wrapper --> fw-radio
   fw-form-wrapper --> fw-select
-  fw-form-wrapper --> fw-select-option
   fw-form-wrapper --> fw-timepicker
   fw-input --> fw-icon
   fw-icon --> fw-toast-message

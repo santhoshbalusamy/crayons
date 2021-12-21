@@ -25,6 +25,29 @@
 | `fwFormSubmit` |             | `CustomEvent<{ values: FormValues; actions: { setSubmitting: (value: boolean) => void; }; }>` |
 
 
+## Methods
+
+### `doReset() => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+### `doSubmit() => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+
 ## Dependencies
 
 ### Used by

@@ -5,6 +5,7 @@ import {
   Element,
   Event,
   EventEmitter,
+  Method,
 } from '@stencil/core';
 import {
   FormRenderProps,
@@ -93,9 +94,19 @@ export class Form implements FormConfig {
     this.isSubmitting = value;
   };
 
-  handleSubmit = async (event: Event) => {
-    event.preventDefault();
-    event.stopPropagation();
+  @Method()
+  async doSubmit() {
+    this.handleSubmit();
+  }
+
+  @Method()
+  async doReset() {
+    this.handleReset();
+  }
+
+  handleSubmit = async (event?: Event) => {
+    event?.preventDefault();
+    event?.stopPropagation();
 
     const isValid = true;
     // on clicking submit, mark all fields as touched
@@ -115,9 +126,15 @@ export class Form implements FormConfig {
     this.onFormSubmit.emit({ values: this.values, actions: { setSubmitting } });
   };
 
-  handleReset = () => {
+  handleReset = (event?: any) => {
+    event?.preventDefault();
+    event?.stopPropagation();
     this.isSubmitting = false;
     this.submitCount = 0;
+    this.values = this.initialValues;
+    this.errors = {};
+    this.touched = {};
+    this.focused = null;
   };
 
   handleValidation = async (field?: string, _target?: any) => {
@@ -255,13 +272,19 @@ export class Form implements FormConfig {
       checked: !!this.values[field],
     });
 
-    const selectProps = (field: keyof FormValues) => ({
+    const selectProps = (field: keyof FormValues, inputType) => ({
       type: 'select',
       name: field,
       id: `${this.formId}-input-${field}`,
       handleChange: this.handleInput(field as string, 'select'),
       handleBlur: this.handleBlur(field as string, 'select'),
       handleFocus: this.handleFocus(field as string, 'select'),
+      value:
+        inputType === 'MULTI_SELECT' // for multiselect pass Array
+          ? this.values[field]?.map((v) => v.value || v)
+          : Array.isArray(this.values[field]) // single select but the value is an array, pass 0th index
+          ? this.values[field]?.map((v) => v.value || v)[0]
+          : this.values[field],
     });
 
     const labelProps = (field: keyof FormValues, value?: string) => ({

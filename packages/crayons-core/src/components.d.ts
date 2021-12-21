@@ -235,6 +235,8 @@ export namespace Components {
         "value": any;
     }
     interface FwForm {
+        "doReset": () => Promise<void>;
+        "doSubmit": () => Promise<void>;
         "initialErrors": any;
         "initialValues": any;
         "renderer": (props: FormRenderProps<any>) => any;
@@ -250,6 +252,8 @@ export namespace Components {
         "validationSchema": any;
     }
     interface FwFormWrapper {
+        "doReset": () => Promise<void>;
+        "doSubmit": () => Promise<void>;
         "formSchema": { title: string; name: string; fields: ({ id: string; type: string; label: string; name: string; position: number; editable: boolean; custom: boolean; inputType: string; placeholder: string; required: boolean; fieldOptions: {}; fields: any[]; field_options?: undefined; filterable?: undefined; searchable?: undefined; link?: undefined; choices?: undefined; optionLabelPath?: undefined; optionValuePath?: undefined; visible?: undefined; deleted?: undefined; hint?: undefined; parent_id?: undefined; parent?: undefined; } | { name: string; label: string; type: string; inputType: string; field_options: {}; filterable: boolean; searchable: boolean; required: boolean; link: string; choices: { id: number; value: string; position: number; }[]; id?: undefined; position?: undefined; editable?: undefined; custom?: undefined; placeholder?: undefined; fieldOptions?: undefined; fields?: undefined; optionLabelPath?: undefined; optionValuePath?: undefined; visible?: undefined; deleted?: undefined; hint?: undefined; parent_id?: undefined; parent?: undefined; } | { id: string; type: string; label: string; name: string; position: number; editable: boolean; custom: boolean; required: boolean; inputType: string; placeholder: string; optionLabelPath: string; optionValuePath: string; choices: { id: string; value: string; position: number; }[]; fields: any[]; fieldOptions?: undefined; field_options?: undefined; filterable?: undefined; searchable?: undefined; link?: undefined; visible?: undefined; deleted?: undefined; hint?: undefined; parent_id?: undefined; parent?: undefined; } | { id: string; name: string; label: string; type: string; inputType: string; position: number; required: boolean; editable: boolean; visible: boolean; deleted: boolean; link: any; placeholder: any; hint: any; field_options: {}; filterable: boolean; searchable: boolean; parent_id: any; choices: { id: number; value: string; position: number; }[]; custom?: undefined; fieldOptions?: undefined; fields?: undefined; optionLabelPath?: undefined; optionValuePath?: undefined; parent?: undefined; } | { id: string; parent: any; type: string; label: string; name: string; position: number; editable: boolean; custom: boolean; required: boolean; inputType: string; placeholder: string; fieldOptions: {}; fields: any[]; field_options?: undefined; filterable?: undefined; searchable?: undefined; link?: undefined; choices?: undefined; optionLabelPath?: undefined; optionValuePath?: undefined; visible?: undefined; deleted?: undefined; hint?: undefined; parent_id?: undefined; })[]; };
         "initialErrors": any;
         "initialValues": { age: string; is_indian_citizen: boolean; };
